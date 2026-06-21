@@ -1,21 +1,87 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Atomic Headaches
 
-# Run and deploy your AI Studio app
+A premium minimal journal designed for immediate thought capture.
 
-This contains everything you need to run your app locally.
+Atomic Headaches removes friction between thinking and writing. Every note automatically captures context including time, date, and location while keeping the interface nearly invisible.
 
-View your app in AI Studio: https://ai.studio/apps/8df4eb91-4eaf-4020-85a7-2262047c5714
+## Features
 
-## Run Locally
+### Core
 
-**Prerequisites:**  [Android Studio](https://developer.android.com/studio)
+• Fast note capture
+• Automatic timestamp
+• Automatic day tracking
+• Automatic location labeling
+• Focus mode writing
+• Auto save workflow
+• Search and filtering
+• Local persistence
 
+### Capture Presets
 
-1. Open Android Studio
-2. Select **Open** and choose the directory containing this project
-3. Allow Android Studio to fix any incompatibilities as it imports the project.
-4. Create a file named `.env` in the project directory and set `GEMINI_API_KEY` in that file to your Gemini API key (see `.env.example` for an example)
-5. Remove this line from the app's `build.gradle.kts` file: `signingConfig = signingConfigs.getByName("debugConfig")`
-6. Run the app on an emulator or physical device
+• Morning Thought
+• Idea
+• Reminder
+
+### Metadata
+
+• Home
+• Campus
+• Outside
+
+### Mood System
+
+• Calm
+• Focused
+• Reflective
+• Tired
+• Restless
+• Clear
+
+### Experience
+
+• Cinematic onboarding
+• Premium motion design
+• Large touch targets
+• Minimal cognitive load
+• Dark immersive interface
+
+## Design Principles
+
+Speed over features
+
+Writing over navigation
+
+Context without effort
+
+Motion with purpose
+
+One primary action per screen
+
+## Tech Stack
+
+React
+
+TypeScript
+
+TailwindCSS
+
+Framer Motion
+
+shadcn/ui
+
+Local Storage
+
+## Roadmap
+
+Voice notes
+
+Cloud sync
+
+Image attachments
+
+AI assisted reflection
+
+Export to PDF
+
+Daily summaries
