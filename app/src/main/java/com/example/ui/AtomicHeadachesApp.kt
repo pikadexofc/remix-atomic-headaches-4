@@ -1428,8 +1428,9 @@ fun MainStream(
 
                     // Audio Toggle
                     val soundOn by viewModel.audioState
+                    @Suppress("DEPRECATION")
                     Icon(
-                        imageVector = if (soundOn) Icons.AutoMirrored.Filled.VolumeUp else Icons.AutoMirrored.Filled.VolumeOff,
+                        imageVector = if (soundOn) Icons.Filled.VolumeUp else Icons.Filled.VolumeOff,
                         contentDescription = "Toggle Soundtrack",
                         tint = if (soundOn) CreamWhite else Color.White.copy(alpha = 0.3f),
                         modifier = Modifier
@@ -2868,7 +2869,8 @@ fun AnalyticsDashboard(
                             Spacer(modifier = Modifier.height(6.dp))
                             Text("$total", style = TextStyle(fontFamily = FontFamily.Monospace, fontWeight = FontWeight.Bold, fontSize = 36.sp, color = CreamWhite))
                         }
-                        Icon(Icons.AutoMirrored.Filled.TrendingUp, null, tint = NeonCyan, modifier = Modifier.size(36.dp))
+                        @Suppress("DEPRECATION")
+                        Icon(Icons.Filled.TrendingUp, null, tint = NeonCyan, modifier = Modifier.size(36.dp))
                     }
                 }
 
