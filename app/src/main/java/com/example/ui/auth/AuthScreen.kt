@@ -236,43 +236,7 @@ fun AuthScreen(
                     }
                 }
 
-                // Button 1B: Quick Sandbox Google Sign-In (Resolves any active dev environment exceptions instantly)
-                Button(
-                    onClick = {
-                        playSound(1000f, 0.25f)
-                        onAuthSuccess("mdzobaedislamshanto@gmail.com", "Demo Keeper", "")
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(54.dp)
-                        .testTag("sandbox_login_button"),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = NeonCyan.copy(alpha = 0.12f),
-                        contentColor = NeonCyan
-                    ),
-                    border = BorderStroke(1.dp, NeonCyan.copy(alpha = 0.25f)),
-                    shape = RoundedCornerShape(16.dp)
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(10.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.CloudQueue,
-                            contentDescription = "Cloud Sandbox Symbol",
-                            tint = NeonCyan,
-                            modifier = Modifier.size(18.dp)
-                        )
-                        Text(
-                            "Sign In with Google Sandbox",
-                            style = TextStyle(
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 14.sp,
-                                letterSpacing = 0.2.sp
-                            )
-                        )
-                    }
-                }
+
 
                 // Button 2: Skip Authentication (with prominent warnings matching user requirement)
                 OutlinedButton(
@@ -380,11 +344,11 @@ fun AuthScreen(
                 text = {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text(
-                            "Google Play Sign-In returned an exception. This is expected because this is an active developer container and does not have the SHA-1 signature registered in Google Cloud Console yet.",
+                            "Google Sign-In could not complete. This may happen if Google Play Services is unavailable or if your device configuration is not supported.",
                             style = TextStyle(fontSize = 13.sp, color = MutedText)
                         )
                         Text(
-                            "Would you like to authorize with a secure Sandbox Demo linkage using your email (mdzobaedislamshanto@gmail.com)? This grants mock cloud storage and full access to Google Drive sync/export features.",
+                            "You can try again, or continue offline. Your notes are stored securely on your device.",
                             style = TextStyle(fontSize = 13.sp, color = CreamWhite)
                         )
                     }
@@ -393,19 +357,23 @@ fun AuthScreen(
                     TextButton(
                         onClick = {
                             showOAuthErrorDialog = false
-                            playSound(1000f, 0.25f)
-                            onAuthSuccess("mdzobaedislamshanto@gmail.com", "Demo Keeper", "")
+                            playSound(800f, 0.15f)
+                            val intent = googleSignInClient.signInIntent
+                            signInLauncher.launch(intent)
                         },
-                        modifier = Modifier.testTag("demo_sign_in_confirm")
+                        modifier = Modifier.testTag("retry_sign_in_confirm")
                     ) {
-                        Text("Use Sandbox Sign-In", color = NeonCyan, fontWeight = FontWeight.Bold)
+                        Text("Try Again", color = NeonCyan, fontWeight = FontWeight.Bold)
                     }
                 },
                 dismissButton = {
                     TextButton(
-                        onClick = { showOAuthErrorDialog = false }
+                        onClick = {
+                            showOAuthErrorDialog = false
+                            onSkipAuth()
+                        }
                     ) {
-                        Text("Go Back", color = Color.White.copy(alpha = 0.5f))
+                        Text("Use Offline", color = Color.White.copy(alpha = 0.5f))
                     }
                 },
                 containerColor = SlateCard,

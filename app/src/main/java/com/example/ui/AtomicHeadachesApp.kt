@@ -1135,7 +1135,12 @@ fun MainStream(
                 kotlinx.coroutines.delay(400)
                 val currentDraft = viewModel.draft.value
                 if (currentDraft != null && !viewModel.isRecording.value) {
-                    viewModel.startRecording(currentDraft.id, context)
+                    val hasAudioPermission = androidx.core.content.ContextCompat.checkSelfPermission(
+                        context, android.Manifest.permission.RECORD_AUDIO
+                    ) == android.content.pm.PackageManager.PERMISSION_GRANTED
+                    if (hasAudioPermission) {
+                        viewModel.startRecording(currentDraft.id, context)
+                    }
                 }
             }
         }
@@ -1424,7 +1429,7 @@ fun MainStream(
                     // Audio Toggle
                     val soundOn by viewModel.audioState
                     Icon(
-                        imageVector = if (soundOn) Icons.Default.VolumeUp else Icons.Default.VolumeOff,
+                        imageVector = if (soundOn) Icons.AutoMirrored.Filled.VolumeUp else Icons.AutoMirrored.Filled.VolumeOff,
                         contentDescription = "Toggle Soundtrack",
                         tint = if (soundOn) CreamWhite else Color.White.copy(alpha = 0.3f),
                         modifier = Modifier
@@ -2863,7 +2868,7 @@ fun AnalyticsDashboard(
                             Spacer(modifier = Modifier.height(6.dp))
                             Text("$total", style = TextStyle(fontFamily = FontFamily.Monospace, fontWeight = FontWeight.Bold, fontSize = 36.sp, color = CreamWhite))
                         }
-                        Icon(Icons.Default.TrendingUp, null, tint = NeonCyan, modifier = Modifier.size(36.dp))
+                        Icon(Icons.AutoMirrored.Filled.TrendingUp, null, tint = NeonCyan, modifier = Modifier.size(36.dp))
                     }
                 }
 
@@ -3082,7 +3087,7 @@ fun AccountSettingsDialog(
                     }
                 }
 
-                Divider(color = Color.White.copy(alpha = 0.08f), thickness = 1.dp)
+                HorizontalDivider(color = Color.White.copy(alpha = 0.08f), thickness = 1.dp)
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -3129,10 +3134,7 @@ fun AccountSettingsDialog(
 
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(
-                    onClick = {
-                        val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse("https://www.supportkori.com/mdzobaedislamshanto"))
-                        context.startActivity(intent)
-                    },
+                    onClick = {},
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFFFFB74D).copy(alpha = 0.15f),
                         contentColor = Color(0xFFFFB74D)
@@ -3146,12 +3148,12 @@ fun AccountSettingsDialog(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text("Made with love by Pickko", style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 13.sp))
-                        Icon(Icons.Default.Coffee, contentDescription = "Buy me a coffee", modifier = Modifier.size(18.dp))
+                        Icon(Icons.Default.Coffee, contentDescription = "Support", modifier = Modifier.size(18.dp))
                     }
                 }
 
                 if (authCompleted) {
-                    Divider(color = Color.White.copy(alpha = 0.08f), thickness = 1.dp)
+                    HorizontalDivider(color = Color.White.copy(alpha = 0.08f), thickness = 1.dp)
                     TextButton(
                         onClick = {
                             playSound(300f, 0.25f)

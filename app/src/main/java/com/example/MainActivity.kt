@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ui.AtomicHeadachesApp
 import com.example.ui.NoteViewModel
+import com.example.ui.SlateBg
 import com.example.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +21,7 @@ class MainActivity : ComponentActivity() {
       MyApplicationTheme(dynamicColor = false) {
         Surface(
           modifier = Modifier.fillMaxSize(),
-          color = com.example.ui.SlateBg
+          color = SlateBg
         ) {
           val noteViewModel: NoteViewModel = viewModel()
           AtomicHeadachesApp(viewModel = noteViewModel)

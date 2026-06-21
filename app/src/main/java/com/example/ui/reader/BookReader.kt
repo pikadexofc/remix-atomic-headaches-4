@@ -265,7 +265,7 @@ fun BookReader(
                                     }
                                 }
 
-                                Divider(color = Color(0xFFE5DBC7), thickness = 1.dp)
+                                HorizontalDivider(color = Color(0xFFE5DBC7), thickness = 1.dp)
 
                                 // Article Title
                                 if (activePage.title.isNotEmpty()) {
