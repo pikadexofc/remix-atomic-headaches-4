@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Atomic Headaches 4",
+  "description": "A private slate journal for fast note capture with automatic contextual parameters.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
